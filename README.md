@@ -30,6 +30,8 @@ These are prerequisites for the scripts<br>
 4) Appropriately labels the data set with descriptive variable names.<br>
 5) From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.<br>
 
+Tidy Data<br>
+tidydata.txt contains the data "cleaned" from running the script run_analysis.R<br>
 
 Code Book<br>
 CodeBook.md file contains the explanation of the transformation performed as well as the resulting data
