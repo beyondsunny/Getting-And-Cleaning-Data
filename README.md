@@ -23,19 +23,13 @@ y_train.txt => the type of activities performed ie
 About the script
 run_analysis.R is created to automate the creation of a tidy dataset based on the course prerequisites
 
+These are prerequisites for the scripts
+1) Merges the training and the test sets to create one data set.
+2) Extracts only the measurements on the mean and standard deviation for each measurement.
+3) Uses descriptive activity names to name the activities in the data set
+4) Appropriately labels the data set with descriptive variable names.
+5) From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 
-
-About the script and the tidy dataset
-
-I created a script called run_analysis.R which will merge the test and training sets together. Prerequisites for this script:
-
-the UCI HAR Dataset must be extracted and..
-the UCI HAR Dataset must be availble in a directory called "UCI HAR Dataset"
-After merging testing and training, labels are added and only columns that have to do with mean and standard deviation are kept.
-
-Lastly, the script will create a tidy data set containing the means of all the columns per test subject and per activity. This tidy dataset will be written to a tab-delimited file called tidy.txt, which can also be found in this repository.
-
-About the Code Book
-
-The CodeBook.md file explains the transformations performed and the resulting data and variables.
+Code Book
+CodeBook.md file contains the explanation of the transformation performed as well as the resulting data
