@@ -4,7 +4,7 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 This is the summary of the tidy data set tidydata.txt
 
 Identifiers
-Subject – The subject identifier ie participants
+Subject â€“ The subject identifier ie participants
 Activity- Any of the activity type performed by the participants ie walking, walking upstairs, walking downstairs, sitting, standing or laying
 Measured Data
 [1] "tBodyAcc-mean()-X"           "tBodyAcc-mean()-Y"           "tBodyAcc-mean()-Z"          
@@ -30,11 +30,11 @@ Measured Data
 [61] "fBodyBodyAccJerkMag-mean()"  "fBodyBodyAccJerkMag-std()"   "fBodyBodyGyroMag-mean()"    
 [64] "fBodyBodyGyroMag-std()"      "fBodyBodyGyroJerkMag-mean()" "fBodyBodyGyroJerkMag-std()" 
 
-Activity Labels
-Activiy 1= WALKING
-Activiy 2= WALKING_UPSTAIRS
-Activiy 3= WALKING_DOWNSTAIRS
-Activiy 4= SITTING
-Activiy 5= STANDING
-Activity 6= LAYING
+Activity Labels<br>
+Activiy 1= WALKING<br>
+Activiy 2= WALKING_UPSTAIRS<br>
+Activiy 3= WALKING_DOWNSTAIRS<br>
+Activiy 4= SITTING<br>
+Activiy 5= STANDING<br>
+Activity 6= LAYING<br>
 
