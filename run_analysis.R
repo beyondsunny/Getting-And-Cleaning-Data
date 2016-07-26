@@ -1,7 +1,7 @@
 run_analysis<-function(x){
   
-  #data <- "http://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-  #download.file(data, destfile = "D:/MYDOCUMENT/coursera/Getting And Cleaning Data/PROJECT/data.xlsx",method = "auto", mode ="wb")
+  data <- "http://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+  download.file(data, destfile = "D:/MYDOCUMENT/coursera/Getting And Cleaning Data/PROJECT/data.xlsx",method = "auto", mode ="wb")
   
   #GET ALL THE SUBJECT WHO PERFORM EITHER TEST/TRAINING IDENTIFIED BY A RANGE OF 1 TO 30
   subjecttrainurl<-"D:/MYDOCUMENT/coursera/Getting And Cleaning Data/PROJECT/UCI HAR Dataset/train/subject_train.txt"
