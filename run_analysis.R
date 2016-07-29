@@ -1,32 +1,41 @@
 run_analysis<-function(x){
   
+  #DOWNLOAD THE DATA FROM THE SOURCE
   data <- "http://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-  download.file(data, destfile = "D:/MYDOCUMENT/coursera/Getting And Cleaning Data/PROJECT/data.xlsx",method = "auto", mode ="wb")
+  if(!file.exists("./Getting And Cleaning Data/PROJECT")){dir.create("./Getting And Cleaning Data/PROJECT")}
+  download.file(data, destfile = "./Getting And Cleaning Data/PROJECT/data.zip",method = "auto", mode ="wb")
+  
+  unzip(zipfile="./Getting And Cleaning Data/PROJECT/data.zip",exdir="./Getting And Cleaning Data/PROJECT")
   
   #GET ALL THE SUBJECT WHO PERFORM EITHER TEST/TRAINING IDENTIFIED BY A RANGE OF 1 TO 30
-  subjecttrainurl<-"D:/MYDOCUMENT/coursera/Getting And Cleaning Data/PROJECT/UCI HAR Dataset/train/subject_train.txt"
-  subjecttrain<-read.csv(subjecttrainurl)
-  subjecttesturl<-"D:/MYDOCUMENT/coursera/Getting And Cleaning Data/PROJECT/UCI HAR Dataset/test/subject_test.txt"
-  subjecttest<-read.csv(subjecttesturl)
+  subjecttrainurl<-"./Getting And Cleaning Data/PROJECT/UCI HAR Dataset/train/subject_train.txt"
+  subjecttrain<-read.table(subjecttrainurl)
+  subjecttesturl<-"./Getting And Cleaning Data/PROJECT/UCI HAR Dataset/test/subject_test.txt"
+  subjecttest<-read.table(subjecttesturl)
   
   #GET TRAINING SET
-  xtrainurl<-"D:/MYDOCUMENT/coursera/Getting And Cleaning Data/PROJECT/UCI HAR Dataset/train/X_train.txt"
-  xtrain<-read.csv(xtrainurl)
+  xtrainurl<-"./Getting And Cleaning Data/PROJECT/UCI HAR Dataset/train/X_train.txt"
+  xtrain<-read.table(xtrainurl)
   #GET TRAINING LABEL ie 1=WALKING, 2=WALKING_UPSTAIRS, 3=WALKING_DOWNSTAIRS etc
-  ytrainurl<-"D:/MYDOCUMENT/coursera/Getting And Cleaning Data/PROJECT/UCI HAR Dataset/train/y_train.txt"
-  ytrain<-read.csv(ytrainurl)
+  ytrainurl<-"./Getting And Cleaning Data/PROJECT/UCI HAR Dataset/train/y_train.txt"
+  ytrain<-read.table(ytrainurl)
   
   #GET TEST SET
-  xtesturl<-"D:/MYDOCUMENT/coursera/Getting And Cleaning Data/PROJECT/UCI HAR Dataset/test/X_test.txt"
-  xtest<-read.csv(xtesturl)
+  xtesturl<-"./Getting And Cleaning Data/PROJECT/UCI HAR Dataset/test/X_test.txt"
+  xtest<-read.table(xtesturl)
   #GET TEST LABEL ie 1=WALKING, 2=WALKING_UPSTAIRS, 3=WALKING_DOWNSTAIRS etc
-  ytesturl<-"D:/MYDOCUMENT/coursera/Getting And Cleaning Data/PROJECT/UCI HAR Dataset/test/y_test.txt"
-  ytest<-read.csv(ytesturl)
+  ytesturl<-"./Getting And Cleaning Data/PROJECT/UCI HAR Dataset/test/y_test.txt"
+  ytest<-read.table(ytesturl)
   
   #GET THE FEATURES WHICH CAME FROM 'accelerometer' AND 'gyroscope' ie tBodyAcc-XYZ, tGravityAcc-XYZ etc
-  featureurl<-"D:/MYDOCUMENT/coursera/Getting And Cleaning Data/PROJECT/UCI HAR Dataset/features.txt"
+  featureurl<-"./Getting And Cleaning Data/PROJECT/UCI HAR Dataset/features.txt"
   feature<-read.table(featureurl,header = FALSE)
-
+  
+  #RBIND MAY GIVE ERROR IF THE NAMES OF THE DATA FRAMES ARE NOT THE SAME
+  names(subjecttrain)<-names(subjecttest)
+  names(ytrain)<-names(ytest)
+  names(xtrain)<-names(xtest)
+  
   #COMBINE THE DATA BY USING RBIND FUNCTION
   Subject_data <- rbind(subjecttrain, subjecttest)
   Activity_data<- rbind(ytrain, ytest)
@@ -36,6 +45,7 @@ run_analysis<-function(x){
   names(Subject_data)<-c("subject")
   names(Activity_data)<- c("activity")  
   names(Result_data)<- feature$V2
+
   
   #COMBINE ALL THE COLUMNS FROM ALL DATA FRAMES INTO ONE SINGLE SET
   combined_data <- cbind(Subject_data, Activity_data)
@@ -66,6 +76,6 @@ run_analysis<-function(x){
   #CREATE SECOND INDEPENDENT DATA SET WITH AVERATE OF EACH ACTIVIY
   Second_Data_Set<-aggregate(. ~subject + activity, One_Data_Set, mean)
   Second_Data_Set<-Second_Data_Set[order(Second_Data_Set$subject,Second_Data_Set$activity),]
-  write.table(Second_Data_Set, file = "tidydata.txt",row.name=FALSE)
+  write.table(Second_Data_Set, file = "./Getting And Cleaning Data/PROJECT/tidydata.txt",row.name=FALSE)
 
 }
